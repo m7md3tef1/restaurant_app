@@ -46,9 +46,16 @@ dependencies:
   flutter_bloc:
   image_picker:
   dio:
+  json_annotation:
   bloc:
-  badges:
+  badges: ^2.0.1
+  flutter_swiper_null_safety:
+  group_button:
   flutter_launcher_icons:
+  modal_bottom_sheet:
+  google_sign_in:
+  shimmer: 
+
 
 dev_dependencies:
   flutter_test:

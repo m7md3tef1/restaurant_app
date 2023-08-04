@@ -7,10 +7,15 @@ class SignInLoading extends AuthStates{}
 class SignInSuccess extends AuthStates{}
 class SignInFailed extends AuthStates{}
 
-class RecoverPasswordLoading extends AuthStates{}
-class RecoverPassword extends AuthStates{
-  String?recoverLink;
-  RecoverPassword(this.recoverLink);
+class GetUsersLoading extends AuthStates{}
+class GetUsersSuccess extends AuthStates {
+  var productList = [];
+  GetUsersSuccess(this.productList);
+}
+
+class GetUsersFailed extends AuthStates {
+  final String msg;
+  GetUsersFailed(this.msg);
 }
 
 class SignUpLoading extends AuthStates{}
@@ -20,4 +25,7 @@ class SignUpFailed extends AuthStates{}
 class ImageCamera extends AuthStates{}
 class ImageGallery extends AuthStates{}
 
+class SignInGoogleLoading extends AuthStates{}
+class SignInGoogleSuccess extends AuthStates{}
+class SignInGoogleFailed extends AuthStates{}
 

@@ -1,10 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:resturant_app/features/intro/intro_view.dart';
 import 'package:resturant_app/widgets/widgets/custom_text.dart';
 import '../../core/app_images/app_images.dart';
 import '../home/view.dart';
+import '../intro/view.dart';
 
 class SplashScreen extends StatelessWidget {
   final Widget? nextScreen;

@@ -9,31 +9,35 @@ class Product {
   var Description;
   var type;
   var counter ;
+  var category;
   Product(
       {this.type,
       this.counter,
       this.name,
       this.price,
       this.id,
+        this.category,
       this.Description,
       this.imgurl,
       this.Size});
 
-  Product.fromJson(Map<String, dynamic> json){
-    name =json['name'];
-    price=json['prise'];
-    id=json['id'];
-    Description=json['Description'];
-    Size=json['size'];
+  Product.fromJson(dynamic json){
+    id = json['id'];
+    name = json['title'];
+    price = json['price'];
+    Description = json['description'];
+    category = json['category'];
+    imgurl = json['image'];
   }
-  Map<String, dynamic> toMap(){
-    return{
-      'id': id,
-      'name': name,
-      'prise': price,
-      'Description': Description,
-      'size': Size,
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['title'] = name;
+    map['price'] = price;
+    map['description'] = Description;
+    map['category'] = category;
+    map['image'] = imgurl;
 
-    };
+    return map;
   }
 }

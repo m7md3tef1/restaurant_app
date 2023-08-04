@@ -1,29 +1,27 @@
 import 'package:dio/dio.dart';
-
 import '../../dialoges/toast.dart';
 
 class Api {
-  String baseUrl = '';
+  String baseUrl = 'https://api.escuelajs.co/api/v1/';
 
-  Future<dynamic> getHttp({required url, data, authToken, self}) async {
+  Future getHttp({data, authToken,url}) async {
     try {
       var response = await Dio().get(
-        '$baseUrl$url',
-        options: Options(headers: {
-          "auth": authToken,
-          "self": self,
-        }),
+        baseUrl+url,
         queryParameters: data,
       );
       if (response.statusCode == 200) {
-        print('GET REQUEST: $baseUrl$url');
+        print('GET REQUEST: baseUrl');
         print(response.data);
-        return response.data;
+        var productsList=response.data;
+        print('prooooooooooooooo');
+        print(productsList);
+        return productsList;
       } else {
         return '';
       }
-    } on DioError catch (e) {
-      print('GET REQUEST: $baseUrl$url');
+    } on DioException catch (e) {
+      print('error');
       if (e.response!.statusCode == 401) {
         throw Exception(e.response!.data);
       } else {
@@ -36,16 +34,17 @@ class Api {
     }
   }
 
-  Future<dynamic> postHttp({required url, data, authToken, queryParams}) async {
+  Future<dynamic> postHttp({required url, data}) async {
     try {
-      var response = await Dio().post('$baseUrl$url',
+      var response = await Dio().post(baseUrl+url,
           data: data,
-          queryParameters: queryParams,
-          options: Options(
-            headers: {
-              "auth": authToken,
-            },
-          ));
+          // queryParameters: queryParams,
+          // options: Options(
+          //   headers: {
+          //     "auth": authToken,
+          //   },
+          // )
+      );
 
       if (response.statusCode == 200) {
         print('Success POST REQUEST: $baseUrl$url');
@@ -54,7 +53,7 @@ class Api {
         print(response.statusCode);
         return response.data;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       print('Failed POST REQUEST: $baseUrl$url');
       print('------------------------');
       print(e.error);
@@ -77,7 +76,7 @@ class Api {
         print(response.data);
         return response.data;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       print('------------------------');
       print('faied');
 
@@ -86,6 +85,28 @@ class Api {
       showToast(
           msg: e.response!.data['message'].toString(),
           state: ToastedStates.ERROR);
+    }
+  }
+  Future<dynamic> deleteHttp({required url,  data, authToken}) async {
+    try {
+      var response = await Dio().delete(baseUrl+url,
+          data: data,
+          options: Options(headers: {
+            "auth": authToken,
+          }));
+      if (response.statusCode == 200) {
+        print('-----------------------');
+        print('success');
+        print(response.data);
+        return response.data;
+      }
+    } on DioException catch (e) {
+      print('------------------------');
+      print('faied');
+      print('Failed POST REQUEST: $baseUrl$url');
+      print(e.error);
+      print(e.response);
+      print(e.response!.data['message']);
     }
   }
 }

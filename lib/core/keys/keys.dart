@@ -3,6 +3,8 @@ enum SharedKeys {
   lastName,
   email,
   token,
+  admin,
+  customer,
   userId,
   isLogin,
   isSubscribe

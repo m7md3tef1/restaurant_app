@@ -29,7 +29,7 @@ class ProfileImage extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: Image.file(
-                    image,
+                    AuthCubit.get(context).image,
                     fit: BoxFit.fill,
                   )),
           const SizedBox(

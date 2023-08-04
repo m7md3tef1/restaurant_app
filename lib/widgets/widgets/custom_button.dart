@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
       this.width,
       this.height,
       this.icon,
-      this.color = ColorManager.yellow})
+      this.color = ColorManager.primaryColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class CustomButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 15.w,),
+                SizedBox(width: 25.w,),
                 image==null?Container():  Image(image: image),
                 Expanded(
                   child: CustomText(
